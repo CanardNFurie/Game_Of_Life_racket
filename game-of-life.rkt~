@@ -42,20 +42,15 @@
 (define (trim list)
   (cdr (trim-last list)))
 
-(define (neighbours x y grid)
-  (list (grid-get (- x 1) (- y 1) grid)
-        (grid-get (- x 1) (+ y 0) grid)
-        (grid-get (- x 1) (+ y 1) grid)
-        (grid-get (+ x 0) (- y 1) grid)
-        (grid-get (+ x 0) (+ y 1) grid)
-        (grid-get (+ x 1) (- y 1) grid)
-        (grid-get (+ x 1) (+ y 0) grid)
-        (grid-get (+ x 1) (+ y 1) grid)))
-
-(define (what-you-become x y grid)
-  (if (or (= (map + neighbours(x y grid)) 3) (and (= (map + neighbours(x y grid)) 2) (= (grid-get x y grid) 1)))
-      1
-      0))
+(define (neighbours x y)
+  (list (grid-get (- x 1) (- y 1))
+        (grid-get (- x 1) (+ y 0))
+        (grid-get (- x 1) (+ y 1))
+        (grid-get (+ x 0) (- y 1))
+        (grid-get (+ x 0) (+ y 1))
+        (grid-get (+ x 1) (- y 1))
+        (grid-get (+ x 1) (+ y 0))
+        (grid-get (+ x 1) (+ y 1))))
 
 (define (move x p list)
   (if (= x 1)
@@ -68,24 +63,6 @@
       (if (car list)
           (all-true (cdr list))
           #f)))
-
-;(define (disp list)
-;  (if (null? list)
-;      null
-
-
-;(define (disp-cell n)
-;  (if (= n 1)
-;      (hc-append
-
-;New list from a grid of m lists of n bools
-(define (new-list n m grid)
-  (if (= n 1)
-      
-      
-      
-      
-      
 
 (define (next grid)
   (begin (display (trim (map trim grid)))
