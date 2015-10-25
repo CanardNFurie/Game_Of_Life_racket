@@ -52,19 +52,26 @@
         (grid-get (+ x 1) (+ y 0))
         (grid-get (+ x 1) (+ y 1))))
 
-(define (move x y grid)
-  grid)
+(define (move x p list)
+  (if (= x 1)
+      (cons p (cdr list))
+      (cons (car list) (move (- x 1) p (cdr list)))))
 
 (define (all-true list)
+  (if (null? list)
+      #t
+      (if (car list)
+          (all-true (cdr list))
+          #f)))
 
 (define (next grid)
   (begin (display (trim (map trim grid)))
-         (if (apply ( (map all-zeroes? grid))
+         (if (all-true (map all-zeroes? grid))
              grid
              (next (move grid)))))
 
-(define (game-of-life n m)
-  (next (gen-grid-border (gen-grid n m))))
+;(define (game-of-life n m)
+;  (next (gen-grid-border (gen-grid n m))))
   
 
 
